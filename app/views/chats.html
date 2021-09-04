@@ -1,0 +1,158 @@
+<!--<script src="js/chat.js"></script>-->
+<div ng-controller="chatController">
+<nav class="navbar" id="chatMainNav">
+    <div class="container-fluid">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newchat-dialog">New Chat</button>
+        </div>
+        </div>
+    </div>
+</nav>
+    <div class="col-sm-6" id="chat-wrapper" ng-repeat="chat in chats">
+        <div class="panel panel-primary" ng-controller="ichatController">
+            <div class="panel-heading" data-ng-init="chatId = chat.id">
+                <h4>{{chat.name}} - {{chat.alliances}} ({{chat.id}}) - {{chat.plan}} - {{chat.usercount}} Users</h4>
+            </div>
+            <div class="panel-body">
+                <div col-sm-12 id="chat-wrap" style="color:white">
+                    <ul>
+                        <li ng-repeat="entry in chatEntries">
+                            <span class="time" parse-epoch="{{entry.chatMessage.time}}"></span>: 
+                            <span class="player" ng-style="{'color':entry.chatMessage.playerColor}">
+                                {{entry.chatMessage.player}}
+                            </span>
+                            <span class="player" ng-style="{'color':entry.chatMessage.textColor}">
+                                {{entry.chatMessage.message}}
+                            </span>
+                        </li>
+
+                        <li ng-repeat="status in chatStatuses track by $index">
+                            {{status}}
+                        </li>
+
+                        <li ng-repeat="command in chatCommands track by $index">
+                            {{command}}
+                        </li>
+                    </ul>
+                </div>
+                <form class="form-inline" autocomplete="off">
+                    <div class="form-group form-inline">
+                        <input type="text" class="form-control" ng-model="msgInput">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="send(msgInput)" >Send</button>
+                </form>
+                
+            </div>
+            <hr class="chat-hr" />
+                <button type="submit" ng-click="" class="btn btn-primary" data-toggle="modal" data-target="#adduserchat-dialog">Add User</button>
+                <button type="submit" ng-click="" class="btn btn-primary">Manage</button>
+                <button type="submit" ng-click="" class="btn btn-primary">Delete</button>
+                <button type="submit" ng-click="" class="btn btn-primary">Upgrade</button>
+     
+        </div>
+    </div>
+
+    <!-- Add User to chat -->
+    <div id="adduserchat-dialog" class="modal fade" tabindex="-1" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="">Add User To Chat</h2>
+            <form id="register-form" class="">
+                <div class="form-group">
+                    <label for="chat-adduser">User</label>
+                    <select id="chat-adduser" ng-model="addUser" class="form-control">
+                        <option>User</option>
+                    </select>
+                </div>
+
+                <button type="submit" ng-click="add()" class="btn btn-default">Add</button>
+            </form>
+
+            <h2>Or create a new one</h2>
+
+            <form id="register-form" class="">
+                <div class="form-group">
+                    <label for="chat-adduser">In Game Name</label>
+                    <input type="text" class="form-control" ng-model="newUserName">
+                </div>
+                <div class="form-group">
+                    <label for="chat-adduser">Allaince</label>
+                    <select id="chat-adduser" ng-model="newUserAlliance" class="form-control">
+                        <option ng-repeat="alliance in chatAlliances" >{{alliance}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-adduser">Player Name Color</label>
+                    <select id="chat-adduser" ng-model="newUserPColor" class="form-control">
+                        <option>User</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-adduser">Player Text Color</label>
+                    <select id="chat-adduser" ng-model="newUserMColor" class="form-control">
+                        <option>User</option>
+                    </select>
+                </div>
+                <button type="submit" ng-click="createUser()" class="btn btn-default">Create</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Create New Chat -->
+    <div id="newchat-dialog" class="modal fade" tabindex="-1" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <h2>Create A New Chat</h2>
+            <form id="register-form" class="">
+                <div class="form-group">
+                    <label for="chat-name">Chat Name</label>
+                    <input type="text" class="form-control" id="chat-name" ng-model="name">
+                </div>
+                <div class="form-group">
+                    <label for="chat-alliances">Alliances</label>
+                    <input type="text" placeholder="Separated by comma (,) i.e., Alliance (ALL), Allied (ALD)" class="form-control" id="chat-alliances" ng-model="alliances">
+                </div>
+                <div class="form-group">
+                    <label for="chat-world">World Number</label>
+                    <input type="number" class="form-control" id="chat-world" ng-model="world">
+                </div>
+                <div class="form-group">
+                    <label for="chat-timezone">Timezone</label>
+                    <select id="chat-timezone" class="form-control" ng-model="timezone">
+                        <option>EST</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-textcolor">Text Color</label>
+                    <select id="chat-textcolor" ng-model="textcolor" class="form-control">
+                        <option>White</option>
+                        <option>Orange</option>
+                        <option>Yellow</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-plan">Plan</label>
+                    <select id="chat-plan" ng-model="plan" class="form-control">
+                        <option>Free</option>
+                        <option>300 ($2/month)</option>
+                        <option>500 ($4/month)</option>
+                    </select>
+                </div>
+            <button type="submit" ng-click="createChat()" class="btn btn-default">Create</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+</div>
+
+<script>
+    $("#chat-wrap").niceScroll({cursorcolor:"#FFFFFF", scrollspeed: 1, hidecursordelay:2000, cursorwidth:10});
+</script>

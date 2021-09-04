@@ -1,0 +1,93 @@
+#chat {
+    width:400px;
+    height:250px;
+    background-color: lightgreen;
+}
+
+#contact  #content {
+    width: 100%;
+    min-height: 15vh;
+}
+
+#faq-question-wrap {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#faq-wrapper .panel {
+    padding: 0px;
+}
+
+.pricing i {
+    margin-right: 10px;
+}
+
+.pricing li {
+    font-size: 19px;
+    padding: 10px 15px !important;
+}
+
+/* Chats */
+#chat-wrap {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    
+}
+
+#chat-wrap ul {
+    list-style-type: none;
+    padding: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#chat-wrapper {
+    min-width: 410px;
+}
+
+#chat-wrapper .panel-body {
+    padding:0px;
+}
+
+#chat-wrapper form {
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#chat-wrapper form .form-group {
+    width: 75%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#chat-wrapper form input[type="text"] {
+    width:100%;
+    margin-left:5px;
+}
+
+#chat-wrapper form button {
+    float:right;
+    margin-right:5px;
+}
+
+.chat-hr {
+    margin-bottom: 0px;
+    margin-top:2px;
+}
+
+#chatMainNav {
+    background-color:transparent !important;
+}
+
+
+/* Lib Classes */
+.pricing .list-icon-red {
+    color: #f44336;
+    padding: 2px;
+}
+
+.pricing .list-icon-blue {
+    color: #007ac1;
+}

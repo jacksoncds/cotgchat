@@ -1,0 +1,19 @@
+<div class="col-sm-10 col-sm-offset-1" id="faq-wrapper" ng-controller="faqController">
+
+    <h3>Frequently Asked Questions:</h3>
+
+    <h4>Have a question? <a href="/#!/contact">ask here</a>.</h4>
+    <hr />
+
+    <div id="faq-question-wrap">
+        <div class="panel panel-primary col-sm-10 col-sm-offset-1" ng-repeat="faq in data">
+            <div class="panel-heading">
+                <h3 class="panel-title" ng-bind="faq.question"></h3>
+            </div>
+            <div class="panel-body" ng-bind="faq.answer">
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
